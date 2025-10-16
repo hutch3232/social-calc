@@ -1,0 +1,212 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Social Calc — Home</title>
+    <meta name="description" content="A small, pretty homepage with a date input using Bootswatch." />
+
+    <!-- Bootswatch Cosmo theme (Bootstrap 5) -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootswatch@5.3.8/dist/cosmo/bootstrap.min.css">
+
+    <!-- Flatpickr CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+
+    <style>
+      /* Small custom touches */
+      body {
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+      }
+
+      .hero {
+        background: linear-gradient(180deg, rgba(255,255,255,0.6), rgba(255,255,255,0.15));
+        padding: 4rem 0;
+      }
+
+      .card-centered {
+        max-width: 720px;
+        margin: 0 auto;
+        transform: translateY(-2rem);
+      }
+
+      footer {
+        margin-top: auto;
+        padding: 1.5rem 0;
+        text-align: center;
+        color: #6c757d;
+      }
+    </style>
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+      <div class="container">
+        <a class="navbar-brand d-flex align-items-center" href="#">
+          <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="currentColor" class="bi bi-calculator me-2" viewBox="0 0 16 16">
+            <path d="M3 0a1 1 0 0 0-1 1v14a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1V1a1 1 0 0 0-1-1H3zm1 2h8v2H4V2z"/>
+            <path d="M5 6h6v2H5V6zm0 3h1v1H5V9zm2 0h1v1H7V9zm2 0h1v1H9V9zM5 11h1v1H5v-1zm2 0h1v1H7v-1zm2 0h1v1H9v-1z"/>
+          </svg>
+          Social Calc
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navContent" aria-controls="navContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navContent">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item"><a class="nav-link active" href="#">Home</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <header class="hero text-center">
+      <div class="container">
+        <h1 class="display-5 fw-bold">Expected Social Security Payments Receieved</h1>
+        <p class="fs-5 text-muted">Start by selecting your birthday.</p>
+      </div>
+    </header>
+
+    <main class="container">
+      <div class="card card-centered shadow-lg p-4">
+        <div class="row g-4 align-items-center">
+          <div class="col-12">
+
+            <div class="row g-2 align-items-end">
+              <div class="col-12 col-md-7">
+                <label for="birthDate" class="form-label">Birth date</label>
+                <input type="text" id="birthDate" class="form-control form-control-lg" aria-describedby="dateHelp" placeholder="YYYY-MM-DD">
+                <div id="dateHelp" class="form-text">Select your birth date. The table will start at your 62nd birthday.</div>
+              </div>
+            </div>
+
+            <div class="mt-4">
+              <div class="mb-3 row g-2">
+                <div class="col-6 col-md-4">
+                  <label for="benefitAmt" class="form-label">Full benefit (monthly)</label>
+                    <input type="number" id="benefitAmt" class="form-control" value="500" min="0">
+                </div>
+                <div class="col-6 col-md-4">
+                  <label for="globalRate" class="form-label">Interest rate (%)</label>
+                  <input type="number" id="globalRate" class="form-control" value="5.0" step="0.1">
+                </div>
+                <div class="col-6 col-md-4">
+                  <label for="marginalTax" class="form-label">Marginal tax rate (%)</label>
+                  <input type="number" id="marginalTax" class="form-control" value="25.0" step="0.1">
+                </div>
+              </div>
+
+              <div class="mb-3 row g-2">
+                <div class="col-6 col-md-4">
+                  <label for="retirementAge" class="form-label">Retirement age</label>
+                  <select id="retirementAge" class="form-select">
+                    <option>62</option>
+                    <option>63</option>
+                    <option>64</option>
+                    <option>65</option>
+                    <option>66</option>
+                    <option selected>67</option>
+                    <option>68</option>
+                    <option>69</option>
+                    <option>70</option>
+                  </select>
+                </div>
+                <div class="col-6 col-md-8 align-self-end">
+                  <div class="form-text">Full retirement benefit adjusted for chosen retirement age: <span id="adjustedBenefitDisplay" class="fw-semibold"></span>. Net monthly benefit after tax: <span id="netContributionDisplay" class="fw-semibold"></span></div>
+                </div>
+              </div>
+
+              <div class="mb-3 row g-2">
+                <div class="col-12 col-md-6">
+                  <label for="datasetSelect" class="form-label">Choose life table</label>
+                  <select id="datasetSelect" class="form-select">
+                    <option value="data/Table 1. Life table for the total population: United States, 2021.csv">Table 1 — Total population (2021)</option>
+                    <option value="data/Table 2. Life table for males: United States, 2021.csv">Table 2 — Males (2021)</option>
+                    <option value="data/Table 3. Life table for females: United States, 2021.csv">Table 3 — Females (2021)</option>
+                    <option value="data/Table 4. Life table for the Hispanic population: United States, 2021.csv">Table 4 — Hispanic (2021)</option>
+                    <option value="data/Table 5. Life table for Hispanic males: United States, 2021.csv">Table 5 — Hispanic males (2021)</option>
+                    <option value="data/Table 6. Life table for Hispanic females: United States, 2021.csv">Table 6 — Hispanic females (2021)</option>
+                    <option value="data/Table 7. Life table for the American Indian and Alaska Native, non-Hispanic population: United States, 2021.csv">Table 7 — AIAN (NH) (2021)</option>
+                    <option value="data/Table 8. Life table for American Indian and Alaska Native, non-Hispanic males: United States, 2021.csv">Table 8 — AIAN males (2021)</option>
+                    <option value="data/Table 9. Life table for American Indian and Alaska Native, non-Hispanic females: United States, 2021.csv">Table 9 — AIAN females (2021)</option>
+                    <option value="data/Table 10. Life table for the Asian, non-Hispanic population: United States, 2021.csv">Table 10 — Asian (NH) (2021)</option>
+                    <option value="data/Table 11. Life table for Asian, non-Hispanic males: United States, 2021.csv">Table 11 — Asian males (2021)</option>
+                    <option value="data/Table 12. Life table for Asian, non-Hispanic females: United States, 2021.csv">Table 12 — Asian females (2021)</option>
+                    <option value="data/Table 13. Life table for the Black, non-Hispanic population: United States, 2021.csv">Table 13 — Black (NH) (2021)</option>
+                    <option value="data/Table 14. Life table for Black, non-Hispanic males: United States, 2021.csv">Table 14 — Black males (2021)</option>
+                    <option value="data/Table 15. Life table for Black, non-Hispanic females: United States, 2021.csv">Table 15 — Black females (2021)</option>
+                    <option value="data/Table 16. Life table for the White, non-Hispanic population: United States, 2021.csv">Table 16 — White (NH) (2021)</option>
+                    <option value="data/Table 17. Life table for White, non-Hispanic males: United States, 2021.csv">Table 17 — White males (2021)</option>
+                    <option value="data/Table 18. Life table for White, non-Hispanic females: United States, 2021.csv">Table 18 — White females (2021)</option>
+                  </select>
+                </div>
+                <div class="col-12 col-md-6">
+                  <label class="form-label">Dataset info</label>
+                  <div id="datasetInfo" class="form-text text-muted">No life table selected</div>
+                </div>
+              </div>
+
+              <div class="mt-2">
+                <small class="text-muted">Net monthly benefit received after tax: <span id="netContributionDisplay" class="fw-semibold"></span></small>
+              </div>
+
+              <div class="table-responsive">
+                <table class="table table-sm table-striped align-middle" id="scheduleTable">
+                  <thead>
+                    <tr>
+                      <th>Year</th>
+                      <th>Age</th>
+                      <th class="text-end"><span data-bs-toggle="tooltip" title="Probability that a person at your current age survives to this age">P(S)</span></th>
+                      <th class="text-end">Future Value</th>
+                      <th class="text-end"><span data-bs-toggle="tooltip" title="Expected future value: amount adjusted by probability of survival">E[FV]</span></th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <!-- rows generated by JS -->
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      
+    </main>
+
+    <div class="container mt-4">
+      <div class="row">
+        <div class="col-12">
+          <hr class="my-4">
+          <p class="small text-muted lh-sm">
+            <strong>Data Source:</strong><br>
+            Arias E, Xu J, Kochanek K. United States Life Tables, 2022. 2025 Apr 8. In: National Vital Statistics Reports [Internet]. 
+            Hyattsville (MD): National Center for Health Statistics (US); 2024 Jul-. 74 Number 2. 
+            Available from: <a href="https://www.ncbi.nlm.nih.gov/books/NBK614547/" class="text-muted">https://www.ncbi.nlm.nih.gov/books/NBK614547/</a> 
+            <br>doi: <a href="https://doi.org/10.15620/cdc/174575" class="text-muted">10.15620/cdc/174575</a>
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <footer>
+      <div class="container">
+        <small>© <span id="year"></span> Social Calc — crafted with Bootswatch</small>
+      </div>
+    </footer>
+
+    <!-- Bootstrap JS bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Flatpickr JS -->
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+
+  <!-- PapaParse for CSV parsing in the browser -->
+  <script src="https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js"></script>
+
+    <!-- Site JS -->
+    <script src="assets/js/main.js"></script>
+  </body>
+</html>

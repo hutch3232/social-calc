@@ -1,0 +1,11 @@
+[project]
+name = "social-calc"
+version = "0.1.0"
+description = "When should I start taking social security?"
+readme = "README.md"
+requires-python = ">=3.9"
+dependencies = [
+    "fastexcel>=0.16.0",
+    "polars>=1.33.1",
+    "pyarrow>=21.0.0",
+]
