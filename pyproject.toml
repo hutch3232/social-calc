@@ -3,9 +3,30 @@ name = "social-calc"
 version = "0.1.0"
 description = "When should I start taking social security?"
 readme = "README.md"
-requires-python = ">=3.9"
+requires-python = ">=3.10"
 dependencies = [
     "fastexcel>=0.16.0",
     "polars>=1.33.1",
     "pyarrow>=21.0.0",
+]
+
+[dependency-groups]
+dev = [
+    "ruff>=0.14.6",
+]
+
+[tool.ruff.lint]
+select = [
+    "B",
+    "C4",
+    "E",
+    "F",
+    "ICN",
+    "ISC",
+    "I",
+    "N",
+    "RET",
+    "RUF",
+    "Q",
+    "W"
 ]
