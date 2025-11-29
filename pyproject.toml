@@ -17,16 +17,23 @@ dev = [
 
 [tool.ruff.lint]
 select = [
+    "A",
+    "ANN",
+    "ARG",
     "B",
     "C4",
     "E",
     "F",
+    "I",
     "ICN",
     "ISC",
-    "I",
     "N",
+    "PERF",
+    "PIE",
+    "Q",
     "RET",
     "RUF",
-    "Q",
+    "S",
+    "SIM",
     "W"
 ]
