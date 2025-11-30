@@ -37,3 +37,6 @@ select = [
     "SIM",
     "W"
 ]
+
+[tool.ruff.lint.pydocstyle]
+convention = "google"

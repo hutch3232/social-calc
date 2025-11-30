@@ -41,7 +41,7 @@ class Benefit:
     Full Retirement Age (FRA) in years/months, the FRA date and the
     adjusted monthly benefit for an arbitrary retirement date.
 
-    Attributes
+    Attributes:
     ----------
     birthdate: datetime.date
         The person's birth date.
@@ -58,8 +58,7 @@ class Benefit:
         full_benefit: float,
         retirement_date: str | None = None,
     ) -> None:
-        """
-        Initializes the Benefit object.
+        """Initializes the Benefit object.
 
         Args:
             birthdate: The person's birthdate in 'YYYY-MM-DD' format.
@@ -73,7 +72,7 @@ class Benefit:
     def get_fra(self) -> tuple[int, int]:
         """Return the FRA as a (years, months) tuple based on birth year.
 
-        Raises
+        Raises:
         ------
         ValueError
             If the birth year is outside the supported range (1943+).
@@ -106,7 +105,7 @@ class Benefit:
     def get_max_benefit_age_date(self) -> datetime.date:
         """Return the month (as a date on day 1) when the person turns 70.
 
-        Returns
+        Returns:
         -------
         datetime.date
             The first day of the month in which the person reaches age 70.
@@ -133,7 +132,7 @@ class Benefit:
           at 2/3 of 1% per month until age 70 (the module clamps any
           later dates to the age-70 month).
 
-        Returns
+        Returns:
         -------
         float
             The monthly benefit rounded as a float.
@@ -191,8 +190,7 @@ class Couple:
     """
 
     def __init__(self, person1: Benefit, person2: Benefit) -> None:
-        """
-        Initializes the Couple object.
+        """Initializes the Couple object.
 
         Args:
             person1: The first person's Benefit object.
@@ -214,7 +212,7 @@ class Couple:
             ISO date strings for each person's retirement date. If omitted,
             the `Benefit` instance's `retirement_date` is used.
 
-        Returns
+        Returns:
         -------
         dict[str, float]
             Keys: `person1_benefit`, `person2_benefit`, `total_joint_benefit`.
